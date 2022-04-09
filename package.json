@@ -1,0 +1,19 @@
+{
+  "name": "phoenix-anistream",
+  "version": "1.0.0",
+  "description": "Phoenix Anistream - Anime Streaming Site using Webscraper",
+  "main": "main.js",
+  "scripts": {
+    "start": "set NODE_ENV=development&&electron ."
+  },
+  "author": "Phoenix465",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^18.0.3",
+    "electron-reload": "^2.0.0-alpha.1",
+    "electron-reloader": "^1.2.3"
+  },
+  "dependencies": {
+    "axios": "^0.26.1"
+  }
+}

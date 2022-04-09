@@ -1,0 +1,129 @@
+@font-face { font-family: Cyberbit; src: url('fonts/Cyberbit.ttf'); }
+@font-face { font-family: Aller_Bd; src: url('fonts/Aller_Bd.ttf'); }
+@font-face { font-family: Aller_BdIt; src: url('fonts/Aller_BdIt.ttf'); }
+@font-face { font-family: Aller_lt; src: url('fonts/Aller_lt.ttf'); }
+@font-face { font-family: Aller_Lt; src: url('fonts/Aller_Lt.ttf'); }
+@font-face { font-family: Aller_LtIt; src: url('fonts/Aller_LtIt.ttf'); }
+@font-face { font-family: Aller_Rg; src: url('fonts/Aller_Rg.ttf'); }
+@font-face { font-family: AllerDisplay; src: url('fonts/AllerDisplay.ttf'); }
+
+:root {
+    --MainMenuHeight: 8vmin;
+    --GridHeight: calc(100vh - 8vmin);
+    --GridWidth: 100vw;
+    --AnimeWidgetWidth: 30vmin;
+    --AnimeWidgetHeight: 53vmin;
+    --AnimeWidgetTextWidth: 29vmin;
+    --AnimeFontType: Aller_Lt;
+}
+
+html {
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+body {
+    background-color: #34373C;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0;
+}
+
+.TopMenuBar {
+    background-color: #5865F2FF;
+    color: white;
+
+    border-radius: 0px 0px 10px 10px;
+
+    width: calc(100% - 10px);
+    height: var(--MainMenuHeight);
+    line-height: var(--MainMenuHeight);
+
+    margin: 0;
+    padding-left: 10px;
+
+    font-family: Aller_Bd;
+    font-size: calc(var(--MainMenuHeight)*0.75);
+    user-select: none;
+    /*position:fixed;*/
+}
+
+.SearchButton {
+    height: 30px;
+    width: 30px;
+    font-size: 8vh;
+}
+
+.RecentAddedGrid {
+    display: grid;
+    height: calc(var(--GridHeight) - 20px);
+    width: calc(var(--GridWidth) - 20px);
+
+    grid-template-columns: repeat(auto-fill, minmax(calc(var(--AnimeWidgetWidth)), 1fr));
+    grid-gap: 10px;
+    grid-auto-rows: min-content;
+
+    justify-items: center;
+
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.AnimeWidgetMain {
+    background-color: #3F4146FF;
+
+    width: var(--AnimeWidgetWidth);
+    /*height: var(--AnimeWidgetHeight);*/
+
+    border-radius: 30px 8px 30px 8px;
+
+    vertical-align: top;
+    display: inline-block;
+}
+
+.AnimeWidgetImage {
+    width: var(--AnimeWidgetWidth);
+    border-radius: 30px 8px 0px 0px;
+}
+
+.AnimeWidgetAnimeName {
+    display: block;
+    position: relative;
+    text-align: center;
+
+    width: var(--AnimeWidgetTextWidth);
+    inline-size: var(--AnimeWidgetTextWidth);
+
+    font-size: 2.5vmin;
+    font-family: var(--AnimeFontType);
+    color: white;
+
+    overflow-wrap: break-word;
+}
+
+.AnimeWidgetEpisodeName {
+    display: block;
+    position: relative;
+    text-align: center;
+
+    width: var(--AnimeWidgetTextWidth);
+
+    font-size: 2vmin;
+    font-family: var(--AnimeFontType);
+    color: white;
+
+    overflow-wrap: break-word;
+}
+
+.AnimeWidgetInvisibleName {
+    display: block;
+    position: relative;
+    text-align: center;
+
+    width: var(--AnimeWidgetTextWidth);
+
+    font-size: 2vmin;
+    color: transparent;
+    user-select: none;
+}
