@@ -30,11 +30,16 @@ body {
     margin: 0;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .TopMenuBar {
     background-color: #5865F2FF;
     color: white;
 
     border-radius: 0px 0px 10px 10px;
+    /*overflow: hidden;*/
 
     width: calc(100% - 10px);
     height: var(--MainMenuHeight);
@@ -46,16 +51,223 @@ body {
     font-family: Aller_Bd;
     font-size: calc(var(--MainMenuHeight)*0.75);
     user-select: none;
+
+    /*justify-items: center;*/
     /*position:fixed;*/
 }
 
-.SearchButton {
-    height: 30px;
-    width: 30px;
-    font-size: 8vh;
+.MenuButton {
+    float: right;
+    margin-right: 8px;
+    margin-top: calc(var(--MainMenuHeight)*0.2/2);
+    height: calc(var(--MainMenuHeight) * 0.8);
+    width: calc(var(--MainMenuHeight) * 0.8);
+
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
 }
 
-.RecentAddedGrid {
+/*-----------------------*/
+
+.title {
+    display: inline-block;
+    width: max-content;
+    position: absolute;
+
+    transform: translateX(calc(-100% - 10px));
+    animation: SearchTitleAnimationR 0.3s ease 0.3s 1 normal forwards;
+}
+
+.ToggleSearchTitleAnimationOn {
+    animation: SearchTitleAnimation 0.3s ease 0s 1 normal forwards;
+}
+
+@keyframes SearchTitleAnimation {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-100% - 10px));
+    }
+}
+
+@keyframes SearchTitleAnimationR {
+    0% {
+        transform: translateX(calc(-100% - 10px));
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/*-----------------------*/
+
+.MenuBackButton {
+    position: absolute;
+
+    margin-right: 8px;
+    margin-top: calc(var(--MainMenuHeight)*0.2/2);
+    height: calc(var(--MainMenuHeight) * 0.8);
+    width: calc(var(--MainMenuHeight) * 0.8);
+
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+
+    background-image: url("resources/backarrow.png");
+    opacity: 0;
+
+    animation: SearchBackButtonAnimationR 0.3s ease 0s 1 normal forwards;
+}
+
+.ToggleSearchBackButtonAnimationOn {
+    animation: SearchBackButtonAnimation 0.3s ease 0.3s 1 normal forwards;
+}
+
+@keyframes SearchBackButtonAnimation {
+    0% {
+        transform: translateX(calc(-100% - 10px));
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes SearchBackButtonAnimationR {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(calc(-100% - 10px));
+        opacity: 0;
+    }
+}
+
+/*-----------------------*/
+
+.SearchBackground {
+    background-image: url("resources/search.png");
+
+    animation: SearchButtonAnimationR 0.3s ease 0s 1 normal forwards;
+}
+
+.ToggleSearchAnimationOn {
+    animation: SearchButtonAnimation 0.3s ease 0s 1 normal forwards;
+}
+
+@keyframes SearchButtonAnimation {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(calc(-100% - 8px));
+    }
+}
+
+@keyframes SearchButtonAnimationR {
+    0% {
+        transform: translateY(calc(-100% - 8px));
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/*-----------------------*/
+
+::placeholder {
+    color: #FFFFFF;
+    opacity: 0.8;
+}
+
+.SearchInput {
+    position: absolute;
+
+    margin-top: calc(-1 * var(--MainMenuHeight) * 0.8 + 4px);
+    width: inherit;
+    height: calc(var(--MainMenuHeight) * 0.5);
+
+    color: white;
+
+    background-color: #4d5bef;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    padding: 0;
+}
+
+/*-----------------------*/
+
+.SearchLineRectangle {
+    float: right;
+    margin-top: calc(var(--MainMenuHeight) - 4px);
+    margin-right: 5px;
+    height: 2px;
+    width: calc(100vw - 5 * (var(--MainMenuHeight)*0.8 + 8px) - 15px);
+    background-color: white;
+    opacity: 0;
+
+    animation: SearchLineRectangleAnimationR 0.5s ease 0s 1 normal forwards;
+}
+
+.ToggleSearchLineRectangleAnimationOn {
+    animation: SearchLineRectangleAnimation 0.5s ease 0s 1 normal forwards;
+}
+
+@keyframes SearchLineRectangleAnimation {
+    0% {
+        transform: translateX(50%) scaleX(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0) scaleX(1);
+        opacity: 1;
+    }
+}
+
+@keyframes SearchLineRectangleAnimationR {
+    0% {
+        transform: translateX(0) scaleX(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(50%) scaleX(0);
+        opacity: 0;
+    }
+}
+
+/*-----------------------*/
+
+.BookmarkBackground {
+    background-image: url("resources/bookmark.png");
+}
+
+.AboutBackground {
+    background-image: url("resources/about.png");
+}
+
+.HistoryBackground {
+    background-image: url("resources/history.png");
+}
+
+
+.RecentAddedGrid, .SearchGrid{
     display: grid;
     height: calc(var(--GridHeight) - 20px);
     width: calc(var(--GridWidth) - 20px);
@@ -126,4 +338,106 @@ body {
     font-size: 2vmin;
     color: transparent;
     user-select: none;
+}
+
+.AnimeWidgetAnimeLink {
+    display: none;
+}
+
+.AnimeWidgetThumbnailLink {
+    display: none;
+}
+
+/* -------------------------*/
+
+.loading-holder {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+}
+.lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+}
+.lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+}
+.lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+}
+.lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+}
+.lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+}
+.lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+}
+.lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+}
+@keyframes lds-roller {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

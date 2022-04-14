@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src * 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src * 'unsafe-inline'; img-src * data">
 <!--    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">-->
     <title>Phoenix Anistream</title>
     <link rel="stylesheet" href="style.css" />
@@ -11,18 +11,55 @@
 
 <body>
 <div class="TopMenuBar">
-    <div>Phoenix Anistream</div>
+    <div class="title">Phoenix Anistream</div>
+    <button class="MenuButton HistoryBackground"></button>
+    <button class="MenuButton AboutBackground"></button>
+    <button class="MenuButton BookmarkBackground"></button>
+    <button id="SearchButton" class="MenuButton SearchBackground"></button>
+    <div class="SearchLineRectangle">
+        <label for="SearchInput"></label><input id="SearchInput" class="SearchInput" type="text" placeholder="Search Anime...">
+    </div>
+    <button id="BackButton" class="MenuBackButton"></button>
 </div>
 
-<div class="RecentAddedGrid">
-    <div class="AnimeWidgetMain">
-        <img class="AnimeWidgetImage" src=".\cache\xian-wang-de-richang-shenghuo-2nd-season.png">
-        <div class="AnimeWidgetAnimeName">Xian Wang De Richang Shenghuo 2nd Season</div>
-        <div class="AnimeWidgetInvisibleName">-----</div>
-        <div class="AnimeWidgetEpisodeName">Episode {EpisodeNumber}</div>
-        <div class="AnimeWidgetInvisibleName">-----</div>
-    </div>
+<div id="RecentAddedGrid" class="RecentAddedGrid">
 </div>
+
+<div id="SearchGrid" class="SearchGrid hidden">
+
+</div>
+
+<div id="loading" class="loading-holder hidden">
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<!-- Templates -->
+<template id="AnimeWidgetMainTemplate">
+    <div id="AnimeWidget-alt-name" class="AnimeWidgetMain">
+        <img class="AnimeWidgetImage" src="thumbnail" alt="anime-name">
+        <div class="AnimeWidgetAnimeName">anime-name</div>
+        <div class="AnimeWidgetInvisibleName">-----</div>
+        <div class="AnimeWidgetEpisodeName">Episode episode</div>
+        <div class="AnimeWidgetInvisibleName">-----</div>
+        <div class="AnimeWidgetAnimeLink">anime-link</div>
+        <div class="AnimeWidgetThumbnailLink">thumbnail-source</div>
+    </div>
+</template>
+
+<template id="SearchAnimeWidgetMainTemplate">
+    <div id="SearchAnimeWidget-alt-name" class="AnimeWidgetMain">
+        <img class="AnimeWidgetImage" src="thumbnail" alt="anime-name">
+        <div class="AnimeWidgetAnimeName">anime-name</div>
+        <div class="AnimeWidgetInvisibleName">-----</div>
+        <div class="AnimeWidgetEpisodeName">alternate-names</div>
+        <div class="AnimeWidgetInvisibleName">-----</div>
+        <div class="AnimeWidgetEpisodeName">release-date</div>
+        <div class="AnimeWidgetInvisibleName">-----</div>
+        <div class="AnimeWidgetAnimeLink">anime-link</div>
+        <div class="AnimeWidgetThumbnailLink">thumbnail-source</div>
+    </div>
+</template>
+
+
 
 <!-- You can also require other files to run in this process -->
 <script src="./renderer.js"></script>

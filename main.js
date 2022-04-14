@@ -4,6 +4,8 @@ const webscraper = require("./webscraper.js");
 const path = require('path')
 const env = process.env.NODE_ENV || 'development';
 
+const ignoredCache = /cache|[\/\\]\./;
+
 const createWindow = () => {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
@@ -28,9 +30,10 @@ if (env === 'development') {
     try {
         require('electron-reloader')(module, {
             debug: true,
-            watchRenderer: true
+            watchRenderer: true,
+            ignore: [ignoredCache]
         });
-    } catch (_) { console.log('Error'); }
+    } catch (error) { console.log('Error', error); }
 }
 
 // This method will be called when Electron has finished
@@ -58,4 +61,16 @@ app.on('window-all-closed', () => {
 
 ipcMain.handle("webscraper-GetLatestData", async (event, ...args) => {
     return webscraper.GetLatestData();
+})
+
+ipcMain.handle("GetAnimeIcon", async (event, url, ...args) => {
+    return webscraper.GetAnimeIcon(url);
+})
+
+ipcMain.on("SearchAnime", async (event, query, ...args) => {
+    await webscraper.SearchAnime(query, event);
+})
+
+ipcMain.on("SearchAnimeCancel", async (event, query, ...args) => {
+    webscraper.SearchAnimeCancel();
 })
